@@ -24,3 +24,6 @@ Github for final project of LOG8415E
 ```scp -i final.pem final.pem ubuntu@<PUBLIC_IP_OF_PROXY_INSTANCE>:/home/ubuntu/LOG8415E-Finaaal-Project/final2.pem```. 
 - After this, SSH into the Proxy Instance if you're not already in it, cd into ```LOG8415E-Finaaal-Project``` and do : ```python3 main.py "query_sql"```.
 - One example to do would be : ```python3 main.py "SELECT * FROM actor"```.
+
+# Not Done
+Since my exams lasted until the 19th of December, I wasn't able to implemenmt the RANDOM & CUSTOM strategies. As such, there is only the Direct Hit strategy.
