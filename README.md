@@ -20,7 +20,7 @@ Github for final project of LOG8415E
 - After, to create the Proxy instance run : ```python proxy.py SUBNET_ID```.
 - SSH into the Proxy instance and make sure to be in /home/ubuntu : ```git clone https://github.com/MrEzio/LOG8415E-Finaaal-Project.git```. 
 
-- Once the Proxy instance is created & the cloning part is done, copy the SSH key used to create the Proxy instance ("```final.pem```") from your local machine to the Proxy instance by doing (in this case I'm already in the folder containing the final.pem key): 
+- Once the Proxy instance is created & the cloning part is done, copy the SSH key used to create the Proxy instance ("```final.pem```") from your local machine to the Proxy instance by doing (in this case I'm already in the folder containing the final.pem key in my local machine): 
 ```scp -i final.pem final.pem ubuntu@<PUBLIC_IP_OF_PROXY_INSTANCE>:/home/ubuntu/LOG8415E-Finaaal-Project/final2.pem```. 
 - After this, SSH into the Proxy Instance if you're not already in it, cd into ```LOG8415E-Finaaal-Project``` and do : ```python3 main.py "query_sql"```.
 - One example to do would be : ```python3 main.py "SELECT * FROM actor"```.
