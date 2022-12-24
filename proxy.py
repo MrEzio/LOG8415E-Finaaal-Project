@@ -55,7 +55,7 @@ def create_proxy_ec2_instance(ec2, groupId, keyPair, instance_name, subnet_id, s
     
     response = ec2.run_instances(
         ImageId='ami-0574da719dca65348',
-        InstanceType='t2.micro',
+        InstanceType='t2.large',
         KeyName=keyPair,
         PrivateIpAddress=subnet_private_ip,
         UserData=open("proxy.sh").read(),
