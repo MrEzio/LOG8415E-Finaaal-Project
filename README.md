@@ -1,6 +1,9 @@
 # LOG8415E-Finaaal-Project
 Github for final project of LOG8415E
 
+# Demo Link (Youtube)
+- https://youtu.be/Hn7MCBrTDCw
+
 # Steps in the beginning
 - Make sure you have AWS CLI installed. In your credentials make sure your variables are updated.
 - Make sure to have python3, boto3, pymysql sshtunnel.
