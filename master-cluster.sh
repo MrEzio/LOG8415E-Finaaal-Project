@@ -4,9 +4,11 @@
 sudo apt update
 sudo apt install libaio1 libmecab2 libncurses5 libtinfo5 -y
 
+# MySQL Cluster Management Server
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-management-server_7.6.6-1ubuntu18.04_amd64.deb
 sudo dpkg -i mysql-cluster-community-management-server_7.6.6-1ubuntu18.04_amd64.deb
 
+# Configuration of cluster Manager
 sudo mkdir /var/lib/mysql-cluster
 
 echo "
@@ -41,6 +43,7 @@ hostname=ip-172-31-81-1.ec2.internal            # In our case the MySQL server/c
 NodeId=40
 " | tee -a /var/lib/mysql-cluster/config.ini
 
+# Creating a service for NDB Management to start the Cluster Management server automatically on boot
 echo "
 [Unit]
 Description=MySQL NDB Cluster Management Server
@@ -57,10 +60,12 @@ Restart=on-failure
 WantedBy=multi-user.target
 " | tee -a /etc/systemd/system/ndb_mgmd.service
 
-sudo systemctl daemon-reload
-sudo systemctl enable ndb_mgmd
-sudo systemctl start ndb_mgmd
+# Service on start
+sudo systemctl daemon-reload    # reload systemd’s manager configuration
+sudo systemctl enable ndb_mgmd  # enable the service we just created so that the MySQL Cluster Manager starts on reboot
+sudo systemctl start ndb_mgmd   # start the service
 
+# Install of MySQL Server
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster_7.6.6-1ubuntu18.04_amd64.deb-bundle.tar
 mkdir install
 tar -xvf mysql-cluster_7.6.6-1ubuntu18.04_amd64.deb-bundle.tar -C install/
@@ -79,6 +84,7 @@ sudo debconf-set-selections <<< "mysql-community-server mysql-server/default-aut
 sudo dpkg -i mysql-cluster-community-server_7.6.6-1ubuntu18.04_amd64.deb
 sudo dpkg -i mysql-server_7.6.6-1ubuntu18.04_amd64.deb
 
+# Config for MySQL Server
 echo "
 [mysqld]
 # Options for mysqld process:
@@ -89,8 +95,8 @@ ndbcluster                      # run NDB storage engine
 ndb-connectstring=ip-172-31-81-1.ec2.internal  # location of management server
 " | tee -a /etc/mysql/my.cnf
 
-sudo systemctl restart mysql
-sudo systemctl enable mysql
+sudo systemctl restart mysql   #Restart the MySQL server for these changes to take effect
+sudo systemctl enable mysql    #MySQL by default should start automatically when your server reboots. If it doesn’t, this command should fix this
 
 # Installation of Sakila
 cd ~

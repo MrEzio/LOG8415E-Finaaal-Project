@@ -77,7 +77,7 @@ def create_proxy_ec2_instance(ec2, groupId, keyPair, instance_name, subnet_id, s
             },
         ],
     )
-    print("Instance t2.micro for 'Proxy' was created!")    
+    print("Instance t2.large for 'Proxy' was created!")    
     return response
 
 
@@ -106,7 +106,7 @@ def main():
     # CREATE & LAUNCH EC2 INSTANCE #
     subnet_id = sys.argv[1]  #Get the subnet ID that has the CIDR (172.31.80.0/20)
     try:
-        print(f"####Creating 1 PROXY instance of t2.micro for Proxy####")
+        print(f"####Creating 1 PROXY instance of t2.large for Proxy####")
         proxy_instance = create_proxy_ec2_instance(EC2, group['GroupId'], keyPairName, "proxy", subnet_id, "172.31.81.5")
     except Exception as err:
         print(f"Error occured when creating PROXY ec2 instance: {err}")
