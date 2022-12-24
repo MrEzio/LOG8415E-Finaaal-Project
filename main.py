@@ -30,7 +30,7 @@ def direct_hit_strategy(query):
 
 def main():
     if len(sys.argv) < 2:
-        print('Correct format is: python(or python3) main.py "Example_of_query"')
+        print('Correct format is: python3 main.py "Example_of_query"')
     else:
         Query_SQL = sys.argv[1]
         direct_hit_strategy(Query_SQL)
